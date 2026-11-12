@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wplatoon", "Wplatoon\Wplatoon.csproj", "{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Debug|ARM.ActiveCfg = Debug|ARM
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Debug|ARM.Build.0 = Debug|ARM
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Debug|ARM.Deploy.0 = Debug|ARM
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Debug|x86.ActiveCfg = Debug|x86
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Debug|x86.Build.0 = Debug|x86
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Debug|x86.Deploy.0 = Debug|x86
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Release|ARM.ActiveCfg = Release|ARM
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Release|ARM.Build.0 = Release|ARM
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Release|ARM.Deploy.0 = Release|ARM
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Release|x86.ActiveCfg = Release|x86
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Release|x86.Build.0 = Release|x86
+		{69343F5B-18F0-4AE8-8CBE-5066F4820DCB}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
