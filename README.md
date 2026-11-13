@@ -25,6 +25,7 @@ Everything still using splatoon3.ink
 - Better live tiles (im pretty sure its broken)
 - Better app icon (like cmon bro)
 - Notifications for events ("notify me")
+- github actions to build the app
 - And better everything bro BRO
 
 # Special thanks:
