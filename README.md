@@ -1,4 +1,4 @@
-![logoig](https://github.com/sou-sand/Wplatoon/Assets/ApplicationIcon.png)
+![logoig](https://github.com/sou-sand/Wplatoon/blob/master/Wplatoon/Assets/ApplicationIcon.png)
 # Wplatoon
 **Splatoon companion app for Windows Phone**
 > Supported from Windows Phone 8.0+
