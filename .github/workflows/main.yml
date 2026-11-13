@@ -44,13 +44,8 @@ jobs:
     - name: Setup NuGet
       uses: nuget/setup-nuget@v2
 
-        - name: Restore packages
-      run: |
-        nuget restore Wplatoon.sln
-        if (Test-Path "WplatoonAgent\WplatoonAgent\packages.config") {
-          nuget restore WplatoonAgent\WplatoonAgent\packages.config -PackagesDirectory packages
-        }
-
+    - name: Restore packages
+      run: nuget restore Wplatoon.sln
 
     - name: Build Windows Phone app (${{ matrix.platform }})
       run: |
