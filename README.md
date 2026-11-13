@@ -23,7 +23,6 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 - Better live tiles (im pretty sure its broken)
 - Better app icon (like cmon bro, also mini app icon is kinda broken)
 - Notifications for events ("notify me")
-- github actions to build the app (almost works but fails)
 - Languages option actually functional
 - Fix "change splatoon" appbar button name length
 - Make About page open using Metrosurf and Metrodcord instead of IE

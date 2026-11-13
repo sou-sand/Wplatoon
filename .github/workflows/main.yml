@@ -3,13 +3,20 @@ name: Build Windows Phone 8 App
 on:
   push:
     branches: [ main, master ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        platform: [ ARM, x86 ]
 
     steps:
     - name: Checkout repository
@@ -40,16 +47,35 @@ jobs:
     - name: Restore packages
       run: nuget restore Wplatoon.sln
 
-    - name: Build Windows Phone app
+    - name: Build Windows Phone app (${{ matrix.platform }})
       run: |
         $msbuild = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | Select-Object -First 1
-        & $msbuild Wplatoon.sln /p:Configuration=Release /p:Platform=ARM /p:XapOutputs=false
+        & $msbuild Wplatoon.sln /p:Configuration=Release /p:Platform=${{ matrix.platform }} /p:XapOutputs=false
 
-        Write-Host "Files in Bin\ARM\Release:"
-        Get-ChildItem -Path "Wplatoon\Bin\ARM\Release" -Recurse | Select-Object FullName
+    - name: Package XAP file (${{ matrix.platform }})
+      run: |
+        $platform = "${{ matrix.platform }}"
+        $releaseDir = "Wplatoon\Bin\$platform\Release"
+        $stagingDir = "$env:TEMP\XapStaging_$platform"
+        New-Item -ItemType Directory -Force -Path $stagingDir
+        
+        if ("${{ github.ref_type }}" -eq "tag") {
+          $xapName = "Wplatoon_${{ github.ref_name }}_$platform.xap"
+        } else {
+          $xapName = "Wplatoon_$platform.xap"
+        }
+        
+        Copy-Item -Path "$releaseDir\*" -Destination $stagingDir -Recurse -Force -Exclude "*.pdb","*.xap"
+        Compress-Archive -Path "$stagingDir\*" -DestinationPath "$releaseDir\$xapName" -Force
 
-    - name: Upload XAP artifact
+    - name: Upload XAP artifact (${{ matrix.platform }})
       uses: actions/upload-artifact@v4
       with:
-        name: WindowsPhoneApp-ARM
-        path: Wplatoon/Bin/ARM/Release/
+        name: WindowsPhoneApp_${{ matrix.platform }}
+        path: Wplatoon/Bin/${{ matrix.platform }}/Release/*.xap
+
+    - name: Publish to GitHub Release (Tags only)
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v2
+      with:
+        files: Wplatoon/Bin/${{ matrix.platform }}/Release/*.xap
