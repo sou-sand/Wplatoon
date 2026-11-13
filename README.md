@@ -36,4 +36,5 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 **Join our server!**
 https://discord.gg/ST2XwgM3jA
 
-Note: this is COMPLETELY voluntary, we earn NOTHING from doing this
+Notes: this is COMPLETELY voluntary, we earn NOTHING from doing this
+The app can be quite slow to read data (specially images), this isn't the apps fault, but windows phone's limits and capabilities
