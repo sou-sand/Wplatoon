@@ -25,3 +25,7 @@ Everything still using splatoon3.ink
 - Better live tiles (im pretty sure its broken)
 - Better app icon (like cmon bro)
 - And better everything bro BRO
+
+# Special thanks:
+- misenhower for Splatoon3.ink
+- Astro and MSN Money for initial project idea
