@@ -3,7 +3,9 @@
 **Splatoon 2/3 companion app for Windows Phone**
 > Supported from Windows Phone 8.0+
 <p align="center">
-  <a href="#build-it"><img src="https://img.shields.io/badge/platform-Windows%20Phone%208.1-2ea44f" alt="Windows Phone 8.1"></a></a>
+  <a href="https://github.com/sou-sand/Wplatoon"><img src="https://img.shields.io/github/stars/sou-sand/Wplatoon" alt="GitHub stars"></a>
+  <a href="https://github.com/sou-sand/Wplatoon/releases"><img src="https://img.shields.io/github/downloads/sou-sand/Wplatoon/total" alt="GitHub release downloads"></a>
+  <a href="#build-it"><img src="https://img.shields.io/badge/platform-Windows%20Phone%208.0%2B-2ea44f" alt="Windows Phone 8.0+"></a>
 </p>
 By SouSand
 
