@@ -26,6 +26,7 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 - github actions to build the app (almost works but fails)
 - Languages option actually functional
 - Fix "change splatoon" appbar button name length
+- Make About page open using Metrosurf and Metrodcord instead of IE
 - And better everything bro BRO
 
 # Special thanks:
