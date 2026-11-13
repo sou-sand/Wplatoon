@@ -8,7 +8,7 @@ By SouSand
 # How does this work?
 Everything works thanks to [misenhower](https://github.com/misenhower/)'s project, [Splatoon3.ink](https://github.com/misenhower/splatoon3.ink). 
 
-It uses https://splatoon3.ink/data/schedules.json to load the things you see at the main page
+It uses https://splatoon3.ink/data/schedules.json to load the things you see at the main page, using TLS, even though WP8.0 only supports older TLS versions, somehow ts worked, not even i expected it to work ok
 
 If you're interested, go take a look at https://github.com/misenhower/splatoon3.ink/wiki/Data-Access yourself!
 
@@ -21,7 +21,7 @@ The current month's Salmon Run reward gear.
 Splatfest history across all regions.
 Everything still using splatoon3.ink
 
-- Support for [Splatoon2.ink](https://github.com/misenhower/splatoon2.ink) (switchable)
+- Support for [Splatoon2.ink](https://github.com/misenhower/splatoon2.ink) (switchable, includes everything that it offers too)
 - Better live tiles (im pretty sure its broken)
 - Better app icon (like cmon bro)
 - And better everything bro BRO
