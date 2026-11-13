@@ -19,7 +19,7 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.SDK_TOKEN }}
       run: |
-        gh release download v1.0-sdk -R sou-sand/wp8sdk -p "wp8-sdk.zip" -D $env:TEMP
+        gh release download v1.0-sdk -R sou-sand/wp8sdk -p "wp8_sdk.zip" -D $env:TEMP
         Expand-Archive -Path "$env:TEMP\wp8_sdk.zip" -DestinationPath "$env:TEMP\WP8_SDK" -Force
 
     - name: Install WP8 SDK files and registry
