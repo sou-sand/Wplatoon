@@ -24,3 +24,8 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 # Special thanks:
 - misenhower for Splatoon3.ink and Splatoon2.ink
 - Astro and MSN Money for initial project idea
+
+# Want to get the latest sneak-peeks and help the project?
+**Join our server!**
+https://discord.gg/ST2XwgM3jA
+
