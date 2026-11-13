@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
+  <Languages xmlns="">
+    <Language code="en-US" />
+    <Language code="en-GB" />
+    <Language code="es" />
+    <Language code="ja" />
+    <Language code="es-MX" />
+    <Language code="fr" />
+    <Language code="de" />
+    <Language code="it" />
+  </Languages>
   <App xmlns="" ProductID="{69343f5b-18f0-4ae8-8cbe-5066f4820dcb}" Title="Wplatoon" RuntimeType="Silverlight" Version="1.1.0.0" Genre="apps.normal" Author="SouSand" Description="Splatoon companion app for Windows Phone" Publisher="SouSand" PublisherID="{bd70aee7-77d1-42a2-8381-3fec24e6bb56}">
     <IconPath IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</IconPath>
     <Capabilities>
@@ -20,8 +30,7 @@
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\IconicTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</BackgroundImageURI>
-          <Title>
-          </Title>
+          <Title>Wplatoon</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI>
