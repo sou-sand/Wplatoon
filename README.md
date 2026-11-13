@@ -66,6 +66,8 @@ https://discord.gg/ST2XwgM3jA
 
 We need contributors and helpers, so, help if you don't mind!
 
+If you want to contribute, make a fork and a pull request! 
+
 Notes: this is COMPLETELY voluntary, we earn NOTHING from doing this
 The app can be quite slow to read data (specially images), this isn't the apps fault, but windows phone's limits and capabilities
 
