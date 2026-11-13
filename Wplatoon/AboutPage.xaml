@@ -52,7 +52,6 @@
         <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Height="819">
 
-                <!-- Coding -->
                 <TextBlock Text="Coding" Margin="12,0,12,8"
                    FontFamily="Segoe WP Light" FontWeight="Bold" FontSize="24"/>
                 <Grid Margin="12,0,12,28">
@@ -75,7 +74,6 @@
                 <TextBlock Text="Data/API" Margin="12,0,12,8"
                    FontFamily="Segoe WP Light" FontWeight="Bold" FontSize="24"/>
 
-                <!-- Data/API -->
                 <Grid Margin="12,0,12,28">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -86,17 +84,22 @@
                     <StackPanel Grid.Column="1">
                         <TextBlock Text="misenhower/splatoon3.ink"
                            FontFamily="Segoe WP Light" FontSize="24" TextWrapping="Wrap"/>
-                        <TextBlock Text="Gave the bridge to Splatoon 3's data"
-                           FontFamily="Segoe WP SemiLight" FontSize="16" TextWrapping="Wrap"/>
-                        <Button Content="Splatoon3.ink" Tag="https://splatoon3.ink"
+                        <TextBlock
+                           FontFamily="Segoe WP SemiLight" FontSize="16" TextWrapping="Wrap">
+                            <Run Text="Gave the bridge to "/>
+                            <Run Text="Splatoon 2's and "/>
+                            <Run Text="Splatoon 3's data"/>
+                        </TextBlock>
+                        <Button Content="Splatoon2.ink" Tag="https://splatoon2.ink"
                         HorizontalAlignment="Left" Click="LinkButton_Click"/>
-                        <Button Content="GitHub repository"
+                        <Button Content="Splatoon3.ink" Tag="https://splatoon3.ink"
+                            HorizontalAlignment="Left" Click="LinkButton_Click"/>
+                        <Button Content="GitHub repository (S3.INK)"
                         Tag="https://github.com/misenhower/splatoon3.ink"
                         HorizontalAlignment="Left" Click="LinkButton_Click"/>
                     </StackPanel>
                 </Grid>
 
-                <!-- Others (placeholder: change the text, image and link) -->
                 <TextBlock Text="Others" Margin="12,0,12,8"
                    FontFamily="Segoe WP Light" FontWeight="Bold" FontSize="24"/>
                 <Grid Margin="12,0,12,28">

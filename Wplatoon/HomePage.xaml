@@ -65,7 +65,8 @@
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot">
-        <phone:Panorama Title="wplatoon">
+        <phone:Panorama x:Name="MainPanorama" Title="wplatoon"
+                SelectionChanged="MainPanorama_SelectionChanged">
             <phone:Panorama.Background>
                 <ImageBrush ImageSource="/Assets/wallpapers/1.jpg" Stretch="UniformToFill"/>
             </phone:Panorama.Background>
@@ -94,13 +95,13 @@
                 </Grid>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="anarchy">
+            <phone:PanoramaItem x:Name="AnarchyItem" Header="anarchy">
                 <ListBox x:Name="AnarchyListBox"
                          ItemTemplate="{StaticResource ScheduleTemplate}"
                          SelectionChanged="List_SelectionChanged"/>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="x battles">
+            <phone:PanoramaItem x:Name="XItem" Header="x battles">
                 <ListBox x:Name="XListBox"
                          ItemTemplate="{StaticResource ScheduleTemplate}"
                          SelectionChanged="List_SelectionChanged"/>
@@ -111,13 +112,25 @@
                          ItemTemplate="{StaticResource ScheduleTemplate}"
                          SelectionChanged="List_SelectionChanged"/>
             </phone:PanoramaItem>
+
+            <phone:PanoramaItem x:Name="GearItem" Header="gear">
+                <ListBox x:Name="GearListBox"
+             ItemTemplate="{StaticResource ScheduleTemplate}"
+             SelectionChanged="List_SelectionChanged"/>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem x:Name="FestItem" Header="splatfests">
+                <ListBox x:Name="FestListBox"
+             ItemTemplate="{StaticResource ScheduleTemplate}"
+             SelectionChanged="List_SelectionChanged"/>
+            </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="1.0">
-           <!-- <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.add.rest.png"
-                                            Text="add" Click="AddButton_Click"/>-->
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.swap.png"
+                                            Text="change splatoon" Click="ChangeSplatoon_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/appbar/appbar.refresh.png"
                                             Text="refresh" Click="RefreshButton_Click"/>
             <shell:ApplicationBar.MenuItems>

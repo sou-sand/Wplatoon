@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Windows;
@@ -13,13 +14,15 @@ namespace Wplatoon
 {
     public partial class HomePage : PhoneApplicationPage
     {
-        private const string SchedulesUrl = "https://splatoon3.ink/data/schedules.json"; // to-do: switch between splatoon3.ink and splatoon2.ink
-        private const string CacheName = "schedules.json";
-
-        private bool _downloading;
-        private bool _hasData;
-        private DateTimeOffset? _rotationEnd;
+        private readonly HashSet<string> _busy = new HashSet<string>();
         private readonly DispatcherTimer _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+
+        private bool _hasData;
+        private bool _festsRequested;
+        private string _note = "";
+        private DateTimeOffset? _rotationEnd;
+        private List<ItemViewModel> _salmon = new List<ItemViewModel>();
+        private ItemViewModel _reward;
 
         public HomePage()
         {
@@ -30,7 +33,8 @@ namespace Wplatoon
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            LoadSchedules();
+            ApplyGame();
+            LoadAll();
             _timer.Start();
         }
 
@@ -39,12 +43,253 @@ namespace Wplatoon
             base.OnNavigatedFrom(e);
             _timer.Stop();
         }
+        
+
+        private void ChangeSplatoon_Click(object sender, EventArgs e)
+        {
+            AppSettings.Game = AppSettings.Game == 3 ? 2 : 3;
+            
+            ItemsListBox.ItemsSource = null;
+            AnarchyListBox.ItemsSource = null;
+            XListBox.ItemsSource = null;
+            SalmonListBox.ItemsSource = null;
+            GearListBox.ItemsSource = null;
+            FestListBox.ItemsSource = null;
+            _salmon = new List<ItemViewModel>();
+            _reward = null;
+            _rotationEnd = null;
+            _hasData = false;
+            _festsRequested = false;
+            _note = "";
+            CountdownText.Text = "";
+
+            ApplyGame();
+            LoadAll();
+        }
+        
+        private void ApplyGame()
+        {
+            bool s3 = AppSettings.Game == 3;
+            MainPanorama.Title = s3 ? "wplatoon" : "wplatoon 2";
+            AnarchyItem.Header = s3 ? "anarchy" : "ranked";
+            XItem.Header = s3 ? "x battles" : "league";
+            SetItem(GearItem, s3);
+            SetItem(FestItem, s3);
+        }
+
+        private void SetItem(PanoramaItem item, bool show)
+        {
+            bool present = MainPanorama.Items.Contains(item);
+            if (show && !present) MainPanorama.Items.Add(item);
+            else if (!show && present) MainPanorama.Items.Remove(item);
+        }
+        
+
+        private void LoadAll()
+        {
+            Load(AppSettings.SchedulesCache, AppSettings.SchedulesUrl, ShowSchedules, true);
+
+            if (AppSettings.Game == 3)
+            {
+                Load(AppSettings.Gear3Cache, AppSettings.Gear3Url, ShowGear, false);
+                Load(AppSettings.Coop3Cache, AppSettings.Coop3Url, ShowCoop3, false);
+                if (_festsRequested) LoadFests();
+            }
+            else
+            {
+                Load(AppSettings.Coop2Cache, AppSettings.Coop2Url, ShowCoop2, false);
+            }
+        }
+        
+        private void LoadFests()
+        {
+            _festsRequested = true;
+            Load(AppSettings.Fest3Cache, AppSettings.Fest3Url, ShowFests, false);
+        }
+
+        private void MainPanorama_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AppSettings.Game == 3 && MainPanorama.SelectedItem == FestItem && !_festsRequested)
+                LoadFests();
+        }
+        
+        private void Load(string name, string url, Func<string, bool> show, bool primary)
+        {
+            string cached = CacheHelper.Load(name);
+            if (cached != null && show(cached) && CacheHelper.IsFresh(name))
+            {
+                if (primary)
+                    SetStatus("updated " + CacheHelper.GetTime(name).Value.ToString("HH:mm") + _note);
+                return;
+            }
+            Download(name, url, show, primary);
+        }
+
+        private void Download(string name, string url, Func<string, bool> show, bool primary)
+        {
+            if (!_busy.Add(name)) return;
+
+            if (primary)
+            {
+                LoadingBar.Visibility = Visibility.Visible;
+                LoadingBar.IsIndeterminate = true;
+                SetStatus("updating...");
+            }
+
+            var client = new WebClient();
+            client.Headers["User-Agent"] = AppSettings.UserAgent;
+            client.DownloadStringCompleted += (s, e) =>
+            {
+                _busy.Remove(name);
+                if (primary)
+                {
+                    LoadingBar.IsIndeterminate = false;
+                    LoadingBar.Visibility = Visibility.Collapsed;
+                }
+
+                if (!IsCurrent(name)) return; 
+
+                if (e.Error != null)
+                {
+                    if (primary)
+                        SetStatus(_hasData ? "can't update right now, showing saved data"
+                                           : "couldn't load data - check your connection and refresh");
+                    return;
+                }
+
+                if (show(e.Result))
+                {
+                    CacheHelper.Save(name, e.Result);
+                    if (primary) SetStatus("updated " + DateTime.Now.ToString("HH:mm") + _note);
+                }
+                else if (primary)
+                {
+                    SetStatus(_hasData ? "unexpected data, showing saved data"
+                                       : "unexpected data from the server");
+                }
+            };
+            client.DownloadStringAsync(new Uri(url));
+        }
+
+        private static bool IsCurrent(string name)
+        {
+            if (name == AppSettings.SchedulesCache) return true;
+            if (AppSettings.Game == 2) return name == AppSettings.Coop2Cache;
+            return name == AppSettings.Gear3Cache || name == AppSettings.Coop3Cache
+                || name == AppSettings.Fest3Cache;
+        }
+
+        private void SetStatus(string text)
+        {
+            StatusText.Text = AppSettings.GameName + " - " + text;
+        }
+
+        private static JObject ParseJson(string json)
+        {
+            using (var reader = new JsonTextReader(new StringReader(json)))
+            {
+                reader.DateParseHandling = DateParseHandling.None;
+                return JObject.Load(reader);
+            }
+        }
+        
+
+        private bool ShowSchedules(string json)
+        {
+            try
+            {
+                JObject root = ParseJson(json);
+                List<ItemViewModel> turf;
+
+                if (AppSettings.Game == 2)
+                {
+                    turf = Splatoon2Parser.TurfWar(root);
+                    AnarchyListBox.ItemsSource = Splatoon2Parser.Ranked(root);
+                    XListBox.ItemsSource = Splatoon2Parser.League(root);
+                    _rotationEnd = Splatoon2Parser.CurrentRotationEnd(root);
+                    _note = turf.Count == 0 ? " - no current rotations in the data" : "";
+                }
+                else
+                {
+                    turf = ScheduleParser.TurfWar(root);
+                    AnarchyListBox.ItemsSource = ScheduleParser.Anarchy(root);
+                    XListBox.ItemsSource = ScheduleParser.XBattles(root);
+                    _salmon = ScheduleParser.SalmonRun(root);
+                    RebuildSalmon();
+                    _rotationEnd = ScheduleParser.CurrentRotationEnd(root);
+                    _note = "";
+                }
+
+                ItemsListBox.ItemsSource = turf;
+                UpdateCountdown();
+                TileHelper.Update(turf.Count > 0 ? turf[0] : null);
+
+                _hasData = true;
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        private bool ShowGear(string json)
+        {
+            try
+            {
+                GearListBox.ItemsSource = GearParser.Gear(ParseJson(json));
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
+
+        private bool ShowCoop3(string json)
+        {
+            try
+            {
+                _reward = GearParser.SalmonReward(ParseJson(json));
+                RebuildSalmon();
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
+
+        private bool ShowCoop2(string json)
+        {
+            try
+            {
+                _salmon = Splatoon2Parser.SalmonRun(ParseJson(json));
+                RebuildSalmon();
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
+
+        private bool ShowFests(string json)
+        {
+            try
+            {
+                FestListBox.ItemsSource = GearParser.Splatfests(ParseJson(json), AppSettings.RegionCode, 12);
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
+
+        // Salmon Run list = monthly reward gear (Splatoon 3 only) + the rotations
+        private void RebuildSalmon()
+        {
+            var list = new List<ItemViewModel>();
+            if (_reward != null && AppSettings.Game == 3) list.Add(_reward);
+            list.AddRange(_salmon);
+            SalmonListBox.ItemsSource = list;
+        }
+        
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (_rotationEnd.HasValue && DateTimeOffset.UtcNow >= _rotationEnd.Value)
             {
-                LoadSchedules();
+                LoadAll();
                 return;
             }
             UpdateCountdown();
@@ -74,7 +319,8 @@ namespace Wplatoon
             NavigationService.Navigate(new Uri("/DetailPage.xaml", UriKind.Relative));
         }
 
-        // private void AddButton_Click(object sender, EventArgs e) { }
+        private void RefreshButton_Click(object sender, EventArgs e) { LoadAll(); }
+        private void AddButton_Click(object sender, EventArgs e) { }
 
         private void About_Click(object sender, EventArgs e)
         {
@@ -84,96 +330,6 @@ namespace Wplatoon
         private void Settings_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
-        }
-
-        private void RefreshButton_Click(object sender, EventArgs e)
-        {
-            LoadSchedules();
-        }
-        
-        private void LoadSchedules()
-        {
-            string cached = CacheHelper.Load(CacheName);
-            if (cached != null && ShowSchedules(cached) && CacheHelper.IsFresh(CacheName))
-            {
-                StatusText.Text = "Updated " + CacheHelper.GetTime(CacheName).Value.ToString("HH:mm")
-                                  + " (data refreshes hourly)";
-                return;
-            }
-            Download();
-        }
-
-        private void Download()
-        {
-            if (_downloading) return;
-            _downloading = true;
-
-            LoadingBar.Visibility = Visibility.Visible;
-            LoadingBar.IsIndeterminate = true;
-            StatusText.Text = "Updating...";
-
-            var client = new WebClient();
-            client.Headers["User-Agent"] = "Wplatoon/1.0";
-            client.DownloadStringCompleted += Client_DownloadStringCompleted;
-            client.DownloadStringAsync(new Uri(SchedulesUrl));
-        }
-
-        private void Client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
-        {
-            _downloading = false;
-            LoadingBar.IsIndeterminate = false;
-            LoadingBar.Visibility = Visibility.Collapsed;
-
-            if (e.Error != null)
-            {
-                StatusText.Text = _hasData
-                    ? "Can't update right now, showing saved data"
-                    : "Couldn't load data. Check your connection and refresh.";
-                return;
-            }
-
-            if (ShowSchedules(e.Result))
-            {
-                CacheHelper.Save(CacheName, e.Result);
-                StatusText.Text = "Updated " + DateTime.Now.ToString("HH:mm");
-            }
-            else
-            {
-                StatusText.Text = _hasData
-                    ? "Got unexpected data, showing saved data"
-                    : "Got unexpected data from the server";
-            }
-        }
-        
-        private bool ShowSchedules(string json)
-        {
-            try
-            {
-                JObject root;
-                using (var reader = new JsonTextReader(new StringReader(json)))
-                {
-                    reader.DateParseHandling = DateParseHandling.None;
-                    root = JObject.Load(reader);
-                }
-
-                var turf = ScheduleParser.TurfWar(root);
-                ItemsListBox.ItemsSource = turf;
-                AnarchyListBox.ItemsSource = ScheduleParser.Anarchy(root);
-                XListBox.ItemsSource = ScheduleParser.XBattles(root);
-                SalmonListBox.ItemsSource = ScheduleParser.SalmonRun(root);
-
-                _rotationEnd = ScheduleParser.CurrentRotationEnd(root);
-                UpdateCountdown();
-
-                TileHelper.Update(turf.Count > 0 ? turf[0] : null);
-
-                _hasData = true;
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
         }
     }
 }

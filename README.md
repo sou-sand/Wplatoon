@@ -1,33 +1,26 @@
 ![logoig](https://github.com/sou-sand/Wplatoon/blob/master/Wplatoon/Assets/ApplicationIcon.png)
 # Wplatoon
-**Splatoon companion app for Windows Phone**
+**Splatoon 2/3 companion app for Windows Phone**
 > Supported from Windows Phone 8.0+
 
 By SouSand
 
 # How does this work?
-Everything works thanks to [misenhower](https://github.com/misenhower/)'s project, [Splatoon3.ink](https://github.com/misenhower/splatoon3.ink). 
+Everything works thanks to [misenhower](https://github.com/misenhower/)'s project, [Splatoon3.ink](https://github.com/misenhower/splatoon3.ink) and [Splatoon2.ink](https://github.com/misenhower/splatoon2.ink). 
 
 It uses https://splatoon3.ink/data/schedules.json to load the things you see at the main page, using TLS, even though WP8.0 only supports older TLS versions, somehow ts worked, not even i expected it to work ok
 
-If you're interested, go take a look at https://github.com/misenhower/splatoon3.ink/wiki/Data-Access yourself!
+If you're interested, go take a look at https://github.com/misenhower/splatoon3.ink/wiki/Data-Access and https://github.com/misenhower/splatoon2.ink/wiki/Data-access-policy yourself!
 
 # Planned features:
-- SplatNet Gear: https://splatoon3.ink/data/gear.json
-All the gear currently available on SplatNet, including the daily drop.
-- Co-Op: https://splatoon3.ink/data/coop.json
-The current month's Salmon Run reward gear.
-- Splatfests: https://splatoon3.ink/data/festivals.json
-Splatfest history across all regions.
-Everything still using splatoon3.ink
-
-- Support for [Splatoon2.ink](https://github.com/misenhower/splatoon2.ink) (switchable, includes everything that it offers too)
 - Better live tiles (im pretty sure its broken)
-- Better app icon (like cmon bro)
+- Better app icon (like cmon bro, also mini app icon is kinda broken)
 - Notifications for events ("notify me")
 - github actions to build the app
+- Languages option actually functional
+- Fix "change splatoon" appbar button name length
 - And better everything bro BRO
 
 # Special thanks:
-- misenhower for Splatoon3.ink
+- misenhower for Splatoon3.ink and Splatoon2.ink
 - Astro and MSN Money for initial project idea

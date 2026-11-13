@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{69343f5b-18f0-4ae8-8cbe-5066f4820dcb}" Title="Wplatoon" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="SouSand" Description="Splatoon companion app for Windows Phone" Publisher="SouSand" PublisherID="{bd70aee7-77d1-42a2-8381-3fec24e6bb56}">
+  <App xmlns="" ProductID="{69343f5b-18f0-4ae8-8cbe-5066f4820dcb}" Title="Wplatoon" RuntimeType="Silverlight" Version="1.1.0.0" Genre="apps.normal" Author="SouSand" Description="Splatoon companion app for Windows Phone" Publisher="SouSand" PublisherID="{bd70aee7-77d1-42a2-8381-3fec24e6bb56}">
     <IconPath IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
