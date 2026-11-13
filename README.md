@@ -5,6 +5,13 @@
 
 By SouSand
 
+# Download
+## LiveStore:
+[Download](https://store.live.net.co/app/967)
+
+## GitHub:
+[Releases](https://github.com/sou-sand/Wplatoon/releases)
+
 # How does this work?
 Everything works thanks to [misenhower](https://github.com/misenhower/)'s project, [Splatoon3.ink](https://github.com/misenhower/splatoon3.ink) and [Splatoon2.ink](https://github.com/misenhower/splatoon2.ink). 
 
@@ -29,3 +36,4 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 **Join our server!**
 https://discord.gg/ST2XwgM3jA
 
+Note: this is COMPLETELY voluntary, we earn NOTHING from doing this
