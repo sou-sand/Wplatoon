@@ -181,6 +181,7 @@ namespace Wplatoon
         //
         // For more info on localizing Windows Phone apps see http://go.microsoft.com/fwlink/?LinkId=262072.
         //
+
         private void InitializeLanguage()
         {
             try
@@ -203,6 +204,8 @@ namespace Wplatoon
                 // the resource file.
                 FlowDirection flow = (FlowDirection)Enum.Parse(typeof(FlowDirection), AppResources.ResourceFlowDirection);
                 RootFrame.FlowDirection = flow;
+
+                //RootFrame = new TransitionFrame();
             }
             catch
             {

@@ -1,0 +1,140 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Wplatoon.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    shell:SystemTray.IsVisible="True">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="WPLATOON" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="about" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <StackPanel Height="819">
+
+                <!-- Coding -->
+                <TextBlock Text="Coding" Margin="12,0,12,8"
+                   FontFamily="Segoe WP Light" FontWeight="Bold" FontSize="24"/>
+                <Grid Margin="12,0,12,28">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Assets/test.jpg" Width="100" Height="100"
+                   Margin="0,0,12,0" VerticalAlignment="Top"/>
+                    <StackPanel Grid.Column="1" Height="126" VerticalAlignment="Top">
+                        <TextBlock Text="SouSand" FontFamily="Segoe WP Light" FontSize="24"
+                           TextWrapping="Wrap"/>
+                        <TextBlock Text="Literally the only coder for now"
+                           FontFamily="Segoe WP SemiLight" FontSize="16"
+                           TextWrapping="Wrap"/>
+                        <Button Content="Portifolio" Tag="https://sou-sand.github.io/personal-portifolio/"
+                        HorizontalAlignment="Left" Click="LinkButton_Click"/>
+                    </StackPanel>
+                </Grid>
+                <TextBlock Text="Data/API" Margin="12,0,12,8"
+                   FontFamily="Segoe WP Light" FontWeight="Bold" FontSize="24"/>
+
+                <!-- Data/API -->
+                <Grid Margin="12,0,12,28">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Assets/misenhower.png" Width="100" Height="100"
+                   Margin="0,0,12,0" VerticalAlignment="Top"/>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="misenhower/splatoon3.ink"
+                           FontFamily="Segoe WP Light" FontSize="24" TextWrapping="Wrap"/>
+                        <TextBlock Text="Gave the bridge to Splatoon 3's data"
+                           FontFamily="Segoe WP SemiLight" FontSize="16" TextWrapping="Wrap"/>
+                        <Button Content="Splatoon3.ink" Tag="https://splatoon3.ink"
+                        HorizontalAlignment="Left" Click="LinkButton_Click"/>
+                        <Button Content="GitHub repository"
+                        Tag="https://github.com/misenhower/splatoon3.ink"
+                        HorizontalAlignment="Left" Click="LinkButton_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Others (placeholder: change the text, image and link) -->
+                <TextBlock Text="Others" Margin="12,0,12,8"
+                   FontFamily="Segoe WP Light" FontWeight="Bold" FontSize="24"/>
+                <Grid Margin="12,0,12,28">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Assets/astro.png" Width="100" Height="100"
+                   Margin="0,0,12,0" VerticalAlignment="Top"/>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Astro" FontFamily="Segoe WP Light" FontSize="24"
+                           TextWrapping="Wrap"/>
+                        <TextBlock Text="Initial idea"
+                           FontFamily="Segoe WP SemiLight" FontSize="16" TextWrapping="Wrap"/>
+                        <Button Content="Link" Tag="https://astrostuff.neocities.org/"
+                        HorizontalAlignment="Left" Click="LinkButton_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="12,0,12,28">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Assets/msn_money.png" Width="100" Height="100"
+                   Margin="0,0,12,0" VerticalAlignment="Top"/>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="MSN Money" FontFamily="Segoe WP Light" FontSize="24"
+                           TextWrapping="Wrap"/>
+                        <TextBlock Text="Initial idea and uh idk"
+                           FontFamily="Segoe WP SemiLight" FontSize="16" TextWrapping="Wrap"/>
+                        <Button Content="Link" Tag="https://discord.gg/kE8FyHTq5f"
+                        HorizontalAlignment="Left" Click="LinkButton_Click" Visibility="Visible"/>
+                    </StackPanel>
+                </Grid>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

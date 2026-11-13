@@ -1,0 +1,130 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Wplatoon.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="ScheduleTemplate">
+            <Grid Width="380" Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Width="99" Height="99" Margin="0,0,12,0"
+                        Background="#FF8A8A8A" VerticalAlignment="Top">
+                    <Image Source="{Binding ImagePath}" Stretch="UniformToFill"/>
+                </Border>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding Title}"
+                               FontSize="{StaticResource PhoneFontSizeLarge}"
+                               TextTrimming="WordEllipsis" Margin="0"/>
+                    <TextBlock Text="{Binding Description}"
+                               Style="{StaticResource PhoneTextSubtleStyle}"
+                               FontSize="{StaticResource PhoneFontSizeSmall}"
+                               TextTrimming="WordEllipsis" Margin="0"/>
+                    <TextBlock Text="{Binding Subtitle}"
+                               Style="{StaticResource PhoneTextSubtleStyle}"
+                               FontSize="{StaticResource PhoneFontSizeSmall}" Margin="0"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <phone:Panorama Title="wplatoon">
+            <phone:Panorama.Background>
+                <ImageBrush ImageSource="/Assets/wallpapers/1.jpg" Stretch="UniformToFill"/>
+            </phone:Panorama.Background>
+
+            <phone:PanoramaItem Header="turf war">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel>
+                        <ProgressBar x:Name="LoadingBar" Visibility="Collapsed"/>
+                        <TextBlock x:Name="CountdownText"
+                                   FontSize="{StaticResource PhoneFontSizeMedium}"
+                                   Margin="12,0,0,0"/>
+                        <TextBlock x:Name="StatusText"
+                                   Style="{StaticResource PhoneTextSubtleStyle}"
+                                   FontSize="{StaticResource PhoneFontSizeSmall}"
+                                   Margin="12,0,0,12"/>
+                    </StackPanel>
+
+                    <ListBox x:Name="ItemsListBox" Grid.Row="1"
+                             ItemTemplate="{StaticResource ScheduleTemplate}"
+                             SelectionChanged="List_SelectionChanged"/>
+                </Grid>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="anarchy">
+                <ListBox x:Name="AnarchyListBox"
+                         ItemTemplate="{StaticResource ScheduleTemplate}"
+                         SelectionChanged="List_SelectionChanged"/>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="x battles">
+                <ListBox x:Name="XListBox"
+                         ItemTemplate="{StaticResource ScheduleTemplate}"
+                         SelectionChanged="List_SelectionChanged"/>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="salmon run">
+                <ListBox x:Name="SalmonListBox"
+                         ItemTemplate="{StaticResource ScheduleTemplate}"
+                         SelectionChanged="List_SelectionChanged"/>
+            </phone:PanoramaItem>
+        </phone:Panorama>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="1.0">
+           <!-- <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.add.rest.png"
+                                            Text="add" Click="AddButton_Click"/>-->
+            <shell:ApplicationBarIconButton IconUri="/Assets/appbar/appbar.refresh.png"
+                                            Text="refresh" Click="RefreshButton_Click"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="about" Click="About_Click"/>
+                <shell:ApplicationBarMenuItem Text="settings" Click="Settings_Click"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>
