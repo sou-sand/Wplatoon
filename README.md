@@ -70,6 +70,8 @@ If you want to contribute, make a fork and a pull request!
 
 Notes: this is COMPLETELY voluntary, we earn NOTHING from doing this
 The app can be quite slow to read data (specially images), this isn't the apps fault, but windows phone's limits and capabilities
+This project is not affiliated with misenhower (other than using his repos), Nintendo or any trademark whatsoever 
+
 
 # More information
 This project is open-source! So is Splatoon3.ink and Splatoon2.ink!
