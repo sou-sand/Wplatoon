@@ -15,13 +15,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Build Windows Phone app
+    - name: Download and extract WP8 SDK
+      env:
+        GH_TOKEN: ${{ secrets.SDK_TOKEN }}
       run: |
-        $msbuild = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | Select-Object -First 1
-        & $msbuild Wplatoon.sln /p:Configuration=Release /p:Platform=ARM /p:XapOutputs=false
-        
-        Write-Host "Files in Bin\ARM\Release:"
-        Get-ChildItem -Path "Wplatoon\Bin\ARM\Release" -Recurse | Select-Object FullName
+        gh release download v1.0-sdk -R sou-sand/wp8sdk -p "wp8_sdk.zip" -D $env:TEMP
+        Expand-Archive -Path "$env:TEMP\wp8_sdk.zip" -DestinationPath "$env:TEMP\WP8_SDK" -Force
 
     - name: Install WP8 SDK files and registry
       run: |
@@ -44,10 +43,13 @@ jobs:
     - name: Build Windows Phone app
       run: |
         $msbuild = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | Select-Object -First 1
-        & $msbuild Wplatoon.sln /p:Configuration=Release /p:Platform=ARM
+        & $msbuild Wplatoon.sln /p:Configuration=Release /p:Platform=ARM /p:XapOutputs=false
+
+        Write-Host "Files in Bin\ARM\Release:"
+        Get-ChildItem -Path "Wplatoon\Bin\ARM\Release" -Recurse | Select-Object FullName
 
     - name: Upload XAP artifact
       uses: actions/upload-artifact@v4
       with:
         name: WindowsPhoneApp-ARM
-        path: Wplatoon/Bin/ARM/Release/*.xap
+        path: Wplatoon/Bin/ARM/Release/
