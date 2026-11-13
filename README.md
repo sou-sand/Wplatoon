@@ -17,7 +17,7 @@ By SouSand
 [Releases](https://github.com/sou-sand/Wplatoon/releases)
 
 # How does this work?
-![HOMEPAGE](https://github.com/sou-sand/Wplatoon/blob/master/Wplatoon/screenshots/homepage.png)
+![HOMEPAGE](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/homepage.png)
 
 Everything works thanks to [misenhower](https://github.com/misenhower/)'s project, [Splatoon3.ink](https://github.com/misenhower/splatoon3.ink) and [Splatoon2.ink](https://github.com/misenhower/splatoon2.ink). 
 
@@ -26,7 +26,7 @@ It uses https://splatoon3.ink/data/schedules.json to load the things you see at 
 If you're interested, go take a look at https://github.com/misenhower/splatoon3.ink/wiki/Data-Access and https://github.com/misenhower/splatoon2.ink/wiki/Data-access-policy yourself!
 
 # Planned features:
-![settings](https://github.com/sou-sand/Wplatoon/blob/master/Wplatoon/screenshots/settings.png)
+![settings](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/settings.png)
 
 - Better live tiles (im pretty sure its broken)
 - Better app icon (like cmon bro, also mini app icon is kinda broken)
@@ -39,7 +39,7 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 - And better everything bro BRO
 
 # What does it have (as of now):
-![splatfest](https://github.com/sou-sand/Wplatoon/blob/master/Wplatoon/screenshots/splatfest.png)
+![splatfest](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/splatfest.png)
 
 - Turf war
 - Anarchy
@@ -54,7 +54,7 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 - functional settings (At some point. you can change between 24h/12h scheme, and regional events)
 
 # Special thanks:
-![credits](https://github.com/sou-sand/Wplatoon/blob/master/Wplatoon/screenshots/credits.png)
+![credits](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/credits.png)
 
 - misenhower for Splatoon3.ink and Splatoon2.ink
 - Astro and MSN Money for initial project idea
