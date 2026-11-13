@@ -21,7 +21,7 @@ By SouSand
 
 Everything works thanks to [misenhower](https://github.com/misenhower/)'s project, [Splatoon3.ink](https://github.com/misenhower/splatoon3.ink) and [Splatoon2.ink](https://github.com/misenhower/splatoon2.ink). 
 
-It uses https://splatoon3.ink/data/schedules.json to load the things you see at the main page, using TLS, even though WP8.0 only supports older TLS versions, somehow ts worked, not even i expected it to work ok
+It uses https://splatoon3.ink/data/schedules.json and https://splatoon2.ink/data/schedules.json to load the things you see at the main page, using TLS, even though WP8.0 only supports older TLS versions, somehow ts worked, not even i expected it to work ok
 
 If you're interested, go take a look at https://github.com/misenhower/splatoon3.ink/wiki/Data-Access and https://github.com/misenhower/splatoon2.ink/wiki/Data-access-policy yourself!
 
