@@ -2,7 +2,9 @@
 # Wplatoon
 **Splatoon 2/3 companion app for Windows Phone**
 > Supported from Windows Phone 8.0+
-
+<p align="center">
+  <a href="#build-it"><img src="https://img.shields.io/badge/platform-Windows%20Phone%208.1-2ea44f" alt="Windows Phone 8.1"></a></a>
+</p>
 By SouSand
 
 # Download
@@ -13,6 +15,8 @@ By SouSand
 [Releases](https://github.com/sou-sand/Wplatoon/releases)
 
 # How does this work?
+![HOMEPAGE](https://github.com/sou-sand/Wplatoon/blob/master/Wplatoon/screenshots/homepage.png)
+
 Everything works thanks to [misenhower](https://github.com/misenhower/)'s project, [Splatoon3.ink](https://github.com/misenhower/splatoon3.ink) and [Splatoon2.ink](https://github.com/misenhower/splatoon2.ink). 
 
 It uses https://splatoon3.ink/data/schedules.json to load the things you see at the main page, using TLS, even though WP8.0 only supports older TLS versions, somehow ts worked, not even i expected it to work ok
@@ -20,15 +24,36 @@ It uses https://splatoon3.ink/data/schedules.json to load the things you see at 
 If you're interested, go take a look at https://github.com/misenhower/splatoon3.ink/wiki/Data-Access and https://github.com/misenhower/splatoon2.ink/wiki/Data-access-policy yourself!
 
 # Planned features:
+![settings](https://github.com/sou-sand/Wplatoon/blob/master/Wplatoon/screenshots/settings.png)
+
 - Better live tiles (im pretty sure its broken)
 - Better app icon (like cmon bro, also mini app icon is kinda broken)
 - Notifications for events ("notify me")
 - Languages option actually functional
 - Fix "change splatoon" appbar button name length
 - Make About page open using Metrosurf and Metrodcord instead of IE
+- More explanation about the project at readme.md
+- also make this readme have other languages...?
 - And better everything bro BRO
 
+# What does it have (as of now):
+![splatfest](https://github.com/sou-sand/Wplatoon/blob/master/Wplatoon/screenshots/splatfest.png)
+
+- Turf war
+- Anarchy
+- xbattles
+- salmon run
+- gears
+- splatfests
+- switch between splatoon 2 and 3
+- ranked (splatoon 2)
+- league (splatoon 2)
+- event details (click on the tile)
+- functional settings (At some point. you can change between 24h/12h scheme, and regional events)
+
 # Special thanks:
+![credits](https://github.com/sou-sand/Wplatoon/blob/master/Wplatoon/screenshots/credits.png)
+
 - misenhower for Splatoon3.ink and Splatoon2.ink
 - Astro and MSN Money for initial project idea
 
@@ -36,5 +61,12 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 **Join our server!**
 https://discord.gg/ST2XwgM3jA
 
+We need contributors and helpers, so, help if you don't mind!
+
 Notes: this is COMPLETELY voluntary, we earn NOTHING from doing this
 The app can be quite slow to read data (specially images), this isn't the apps fault, but windows phone's limits and capabilities
+
+# More information
+This project is open-source! So is Splatoon3.ink and Splatoon2.ink!
+
+I used Visual Studio 2015 Community, GitHub Desktop and VS Code for this project btw
