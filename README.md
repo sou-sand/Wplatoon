@@ -36,6 +36,7 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 - Make About page open using Metrosurf and Metrodcord instead of IE
 - More explanation about the project at readme.md
 - also make this readme have other languages...?
+- Fix pages transitions 
 - And better everything bro BRO
 
 # What does it have (as of now):
