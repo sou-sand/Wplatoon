@@ -24,6 +24,7 @@ Everything still using splatoon3.ink
 - Support for [Splatoon2.ink](https://github.com/misenhower/splatoon2.ink) (switchable, includes everything that it offers too)
 - Better live tiles (im pretty sure its broken)
 - Better app icon (like cmon bro)
+- Notifications for events ("notify me")
 - And better everything bro BRO
 
 # Special thanks:
