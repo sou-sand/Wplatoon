@@ -130,7 +130,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="1.0">
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.swap.png"
-                                            Text="change splatoon" Click="ChangeSplatoon_Click"/>
+                                            Text="switch" Click="ChangeSplatoon_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/appbar/appbar.refresh.png"
                                             Text="refresh" Click="RefreshButton_Click"/>
             <shell:ApplicationBar.MenuItems>

@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.Phone.Scheduler;
 
 namespace Wplatoon
 {
@@ -36,6 +37,33 @@ namespace Wplatoon
             ApplyGame();
             LoadAll();
             _timer.Start();
+        }
+
+        private static bool _agentChecked;
+        private const string AgentName = "WplatoonTileAgent";
+
+        private static void EnsureAgent()
+        {
+            if (_agentChecked) return;
+            _agentChecked = true;
+
+            try
+            {
+                // remove and re-add on each launch, which renews the 2-week expiration
+                if (ScheduledActionService.Find(AgentName) != null)
+                    ScheduledActionService.Remove(AgentName);
+
+                ScheduledActionService.Add(new PeriodicTask(AgentName)
+                {
+                    Description = "Keeps the live tile on the current maps.",
+                    ExpirationTime = DateTime.Now.AddDays(14)
+                });
+                #if DEBUG
+                    ScheduledActionService.LaunchForTest(AgentName, TimeSpan.FromSeconds(10));
+                #endif
+            }
+            catch (InvalidOperationException) { }
+            catch (SchedulerServiceException) { }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -153,7 +181,7 @@ namespace Wplatoon
                 {
                     if (primary)
                         SetStatus(_hasData ? "can't update right now, showing saved data"
-                                           : "couldn't load data - check your connection and refresh");
+                                           : "couldn't load data, check your connection and refresh");
                     return;
                 }
 
@@ -223,6 +251,7 @@ namespace Wplatoon
                 ItemsListBox.ItemsSource = turf;
                 UpdateCountdown();
                 TileHelper.Update(turf.Count > 0 ? turf[0] : null);
+                if (TileHelper.LastError.Length > 0) _note += " - tile: " + TileHelper.LastError;
 
                 _hasData = true;
                 return true;

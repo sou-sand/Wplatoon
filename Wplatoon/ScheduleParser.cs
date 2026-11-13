@@ -57,7 +57,8 @@ namespace Wplatoon
                 Stage1Name = s1,
                 Stage2Name = s2,
                 Image2Path = (string)stages[1]["image"]["url"],
-                TimeRange = start.ToString("ddd " + fmt) + " - " + end.ToString(fmt)
+                TimeRange = start.ToString("ddd " + fmt) + " - " + end.ToString(fmt),
+                StartTime = start
             };
         }
 

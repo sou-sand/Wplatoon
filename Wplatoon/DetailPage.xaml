@@ -43,7 +43,7 @@
         </Grid.RowDefinitions>
 
         <ScrollViewer>
-            <StackPanel>
+            <StackPanel Height="769">
                 <Image Source="{Binding ImagePath}" Height="200" Stretch="UniformToFill"/>
                 <TextBlock Text="{Binding Stage1Name}" Margin="12,6,12,12"
            FontSize="{StaticResource PhoneFontSizeMedium}" TextWrapping="Wrap"/>
@@ -59,6 +59,8 @@
                 <TextBlock Text="{Binding TimeRange}" Margin="12,0,12,12"
            Style="{StaticResource PhoneTextSubtleStyle}" TextWrapping="Wrap"/>
                 <TextBlock Text="{Binding Extra}" Margin="12,0,12,24" TextWrapping="Wrap"/>
+                <Button x:Name="RemindButton" Content="remind me" Click="RemindButton_Click"
+        Margin="0,0,0,24"/>
             </StackPanel>
         </ScrollViewer>
 

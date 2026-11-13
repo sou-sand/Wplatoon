@@ -28,15 +28,11 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 # Planned features:
 ![settings](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/settings.png)
 
-- Better live tiles (im pretty sure its broken)
 - Better app icon (like cmon bro, also mini app icon is kinda broken)
-- Notifications for events ("notify me")
 - Languages option actually functional
-- Fix "change splatoon" appbar button name length
-- Make About page open using Metrosurf and Metrodcord instead of IE
+- Make About page open using Metrosurf and Metrocord instead of IE
 - More explanation about the project at readme.md
 - also make this readme have other languages...?
-- Fix pages transitions 
 - And better everything bro BRO
 
 # What does it have (as of now):
@@ -62,7 +58,8 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 
 # Want to get the latest sneak-peeks and help the project?
 **Join our server!**
-https://discord.gg/ST2XwgM3jA
+
+> https://discord.gg/ST2XwgM3jA
 
 We need contributors and helpers, so, help if you don't mind!
 
@@ -76,4 +73,4 @@ This project is not affiliated with misenhower (other than using his repos), Nin
 # More information
 This project is open-source! So is Splatoon3.ink and Splatoon2.ink!
 
-I used Visual Studio 2015 Community, GitHub Desktop and VS Code for this project btw
+I used Visual Studio Community 2015, GitHub Desktop and VS Code for this project btw

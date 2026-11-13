@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Runtime.Serialization;
+using System;
 
 namespace Wplatoon
 {
@@ -27,5 +28,7 @@ namespace Wplatoon
         [DataMember]
         public string Extra { get; set; }
         public Visibility Stage2Visibility { get; set; }
+
+        public DateTime? StartTime { get; set; }
     }
 }
