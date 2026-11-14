@@ -12,8 +12,8 @@ namespace Wplatoon
         {
             InitializeComponent();
             var sel = DataSource.Selected;
-            RemindButton.Visibility = (sel != null && sel.StartTime.HasValue && sel.StartTime.Value > DateTime.Now)
-                ? Visibility.Visible : Visibility.Collapsed;
+            DateTime? t = RemindTime(DataSource.Selected);
+            RemindButton.Visibility = (t.HasValue && t.Value > DateTime.Now) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -22,12 +22,21 @@ namespace Wplatoon
             DataContext = DataSource.Selected;
         }
 
+        private static DateTime? RemindTime(ItemViewModel item)
+        {
+            if (item == null) return null;
+            if (item.RemindAt.HasValue) return item.RemindAt;
+            if (item.StartTime.HasValue) return item.StartTime.Value.AddMinutes(-5);
+            return null;
+        }
+
         private void RemindButton_Click(object sender, RoutedEventArgs e)
         {
             var item = DataSource.Selected;
-            if (item == null || !item.StartTime.HasValue) return;
+            DateTime? target = RemindTime(item);
+            if (item == null || !target.HasValue) return;
 
-            DateTime when = item.StartTime.Value.AddMinutes(-5);
+            DateTime when = target.Value;
             if (when <= DateTime.Now)
             {
                 MessageBox.Show("This one is starting too soon for a reminder.", "Wplatoon", MessageBoxButton.OK);
@@ -41,7 +50,7 @@ namespace Wplatoon
             if (answer != MessageBoxResult.OK) return;
 
             // names must be unique and at most 63 characters
-            string name = "wp" + item.StartTime.Value.Ticks + "-" + Math.Abs((item.Title ?? "").GetHashCode());
+            string name = "wp" + when.Ticks + "-" + Math.Abs((item.Title ?? "").GetHashCode());
 
             try
             {

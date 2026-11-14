@@ -134,8 +134,9 @@
             <shell:ApplicationBarIconButton IconUri="/Assets/appbar/appbar.refresh.png"
                                             Text="refresh" Click="RefreshButton_Click"/>
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="about" Click="About_Click"/>
+                <shell:ApplicationBarMenuItem Text="wallpapers" Click="Wallpapers_Click"/>
                 <shell:ApplicationBarMenuItem Text="settings" Click="Settings_Click"/>
+                <shell:ApplicationBarMenuItem Text="about" Click="About_Click"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

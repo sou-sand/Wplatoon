@@ -74,6 +74,12 @@ namespace Wplatoon
             int slots = subs == null ? 0 : subs.Count;
             string price = ((int)sale["price"]).ToString("N0") + " coins";
             string until = endIso == null ? "" : "Until " + ToLocal(endIso).ToString("ddd " + fmt);
+            DateTime? remindAt = null;
+            if (endIso != null)
+            {
+                DateTime r = ToLocal(endIso).AddMinutes(-30);
+                if (r > DateTime.Now) remindAt = r;
+            }
 
             return new ItemViewModel
             {
@@ -85,6 +91,7 @@ namespace Wplatoon
                 Stage2Name = "",
                 Stage2Visibility = Visibility.Collapsed,
                 TimeRange = until,
+                
                 Extra = tag
                     + "\nBrand: " + brand + (usual != null ? " (usual ability: " + usual + ")" : "")
                     + "\nMain ability: " + main
@@ -171,7 +178,9 @@ namespace Wplatoon
                     Stage2Name = "",
                     Stage2Visibility = Visibility.Collapsed,
                     TimeRange = start.ToString("ddd MMM d, " + fmt) + " - " + end.ToString("ddd MMM d, " + fmt),
-                    Extra = (winner != null ? "Winner: " + winner + "\n" : "") + string.Join("\n", lines.ToArray())
+                    Extra = (winner != null ? "Winner: " + winner + "\n" : "") + string.Join("\n", lines.ToArray()),
+                    RemindAt = (state == "SCHEDULED" && start.AddMinutes(-15) > DateTime.Now)
+                    ? start.AddMinutes(-15) : (DateTime?)null,
                 });
             }
             return list;

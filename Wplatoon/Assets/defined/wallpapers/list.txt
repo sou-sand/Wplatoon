@@ -1,0 +1,6 @@
+﻿# file name | name shown in the app
+CallieAndMarie.jpg | Callie And Marie
+DeepCutAndSquidSisters.jpg | Deep Cut And Squid Sisters
+DeepCutWinter.jpg | Deep Cut (Winter)
+Splatoon3GrandFestivalSplatfest.jpg | Splatoon 3 Grand Festival Splatfest
+Splatoon3LiveConcert.png | Splatoon 3 Live Concert

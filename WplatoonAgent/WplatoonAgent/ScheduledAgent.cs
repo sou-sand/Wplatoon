@@ -30,39 +30,29 @@ namespace WplatoonAgent
             string cached = CacheHelper.Load(CacheName);
             if (cached != null && CacheHelper.IsFresh(CacheName))
             {
-                TryUpdateTile(cached);
-                NotifyComplete();
+                if (!TryUpdateTile(cached, NotifyComplete)) NotifyComplete();
                 return;
             }
 
             var client = new WebClient();
-            client.Headers["User-Agent"] = "Wplatoon/1.0 (Windows Phone 8 fan app; contact: sousand@proton.me";
+            client.Headers["User-Agent"] = "Wplatoon/1.0 (Windows Phone 8 fan app; contact: YOUR-EMAIL-OR-SITE)";
             client.DownloadStringCompleted += (s, e) =>
             {
-                try
-                {
-                    if (e.Error == null)
-                    {
-                        if (TryUpdateTile(e.Result)) CacheHelper.Save(CacheName, e.Result);
-                    }
-                    else if (cached != null)
-                    {
-                        TryUpdateTile(cached);
-                    }
-                }
-                catch (Exception) { }
-                NotifyComplete();
+                string json = (e.Error == null) ? e.Result : cached;   // offline: fall back to what we have
+                bool ok = json != null && TryUpdateTile(json, NotifyComplete);
+                if (ok && e.Error == null) CacheHelper.Save(CacheName, json);
+                if (!ok) NotifyComplete();
             };
             client.DownloadStringAsync(new Uri(Url));
         }
 
-        private static bool TryUpdateTile(string json)
+        private static bool TryUpdateTile(string json, Action done)
         {
-            try { return UpdateTile(json); }
+            try { return UpdateTile(json, done); }
             catch (Exception) { return false; }
         }
-        
-        private static bool UpdateTile(string json)
+
+        private static bool UpdateTile(string json, Action done)
         {
             JObject current = null;
 
@@ -104,18 +94,16 @@ namespace WplatoonAgent
             var stages = s["vsStages"] as JArray;
             if (stages == null || stages.Count < 2) return false;
 
-            string s1 = (string)stages[0]["name"];
-            string s2 = (string)stages[1]["name"];
-            string rule = (string)s["vsRule"]["name"];
-
             bool h24;
             if (!IsolatedStorageSettings.ApplicationSettings.TryGetValue("Use24Hour", out h24)) h24 = true;
             DateTime endLocal = DateTimeOffset.Parse((string)current["endTime"],
                 CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal).ToLocalTime().DateTime;
-            string until = "until " + endLocal.ToString(h24 ? "HH:mm" : "h:mm tt");
 
-            var tile = ShellTile.ActiveTiles.FirstOrDefault();
-            if (tile == null) return false;
+            TileUpdater.Update((string)s["vsRule"]["name"],
+                               (string)stages[0]["name"], (string)stages[1]["name"],
+                               "until " + endLocal.ToString(h24 ? "HH:mm" : "h:mm tt"),
+                               (string)stages[0]["image"]["url"], done);
+            return true;
 
             tile.Update(new FlipTileData
             {

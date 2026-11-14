@@ -33,6 +33,7 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 - Make About page open using Metrosurf and Metrocord instead of IE
 - More explanation about the project at readme.md
 - also make this readme have other languages...?
+- fix github actions (broken)
 - And better everything bro BRO
 
 # What does it have (as of now):
@@ -47,7 +48,8 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 - switch between splatoon 2 and 3
 - ranked (splatoon 2)
 - league (splatoon 2)
-- event details (click on the tile)
+- event details (click on the tile at the menu)
+- notify me button (beta, for some events)
 - functional settings (At some point. you can change between 24h/12h scheme, and regional events)
 
 # Special thanks:

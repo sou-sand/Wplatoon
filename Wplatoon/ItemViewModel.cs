@@ -30,5 +30,7 @@ namespace Wplatoon
         public Visibility Stage2Visibility { get; set; }
 
         public DateTime? StartTime { get; set; }
+
+        public DateTime? RemindAt { get; set; }
     }
 }

@@ -349,7 +349,6 @@ namespace Wplatoon
         }
 
         private void RefreshButton_Click(object sender, EventArgs e) { LoadAll(); }
-        private void AddButton_Click(object sender, EventArgs e) { }
 
         private void About_Click(object sender, EventArgs e)
         {
@@ -359,6 +358,11 @@ namespace Wplatoon
         private void Settings_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
+        }
+
+        private void Wallpapers_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/WallpapersPage.xaml", UriKind.Relative));
         }
     }
 }

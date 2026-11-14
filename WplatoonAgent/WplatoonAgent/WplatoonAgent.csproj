@@ -87,6 +87,7 @@
     <Compile Include="CacheHelper.cs" />
     <Compile Include="ScheduledAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TileUpdater.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
