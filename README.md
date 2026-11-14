@@ -18,6 +18,9 @@ By SouSand
 
 # How does this work?
 ![HOMEPAGE](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/homepage.png)
+![HOMEPAGE](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/homepage2.png)
+![HOMEPAGE](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/homepage3.png)
+![HOMEPAGE](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/homepage4.png)
 
 Everything works thanks to [misenhower](https://github.com/misenhower/)'s project, [Splatoon3.ink](https://github.com/misenhower/splatoon3.ink) and [Splatoon2.ink](https://github.com/misenhower/splatoon2.ink). 
 
@@ -38,6 +41,9 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 
 # What does it have (as of now):
 ![splatfest](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/splatfest.png)
+![wallpapers](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/wallpapers.png)
+![turfwar](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/turfwar.png)
+![livetile](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/livetile.png)
 
 - Turf war
 - Anarchy
@@ -61,6 +67,7 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 - Astro and MSN Money for initial project idea
 
 # Want to get the latest sneak-peeks and help the project?
+![banner](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/banner.png)
 **Join our server!**
 
 > https://discord.gg/ST2XwgM3jA
