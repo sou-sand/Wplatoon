@@ -66,32 +66,48 @@ namespace Wplatoon
             LocalList.ItemsSource = items;
             LocalEmpty.Visibility = items.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
         }
-        // server (not sure if this will work)
+        // server (i didnt expect it work lwk)
+        // added splatoon 2 2
+        private const string S2ImageBase = "https://splatoon2.ink/assets/splatnet";
+
         private void LoadServer()
         {
-            string json = CacheHelper.Load("schedules3.json");
-            if (json == null)
-            {
-                Info.Text = "No Splatoon 3 data yet. Open the main page with Splatoon 3 selected once, then come back.";
-                return;
-            }
-
             var items = new List<WallpaperItem>();
             var seen = new HashSet<string>();
-            var root = JObject.Parse(json);
 
-            var stages = root.SelectToken("data.vsStages.nodes") as JArray;
-            if (stages != null)
-                foreach (JObject s in stages)
-                    AddServer(items, seen, (string)s["name"], (string)s.SelectToken("originalImage.url"));
+            bool s3 = TryAddSplatoon3(items, seen);
+            bool s2 = TryAddSplatoon2(items, seen);
 
-            var coop = root.SelectToken("data.coopGroupingSchedule.regularSchedules.nodes") as JArray;
-            if (coop != null)
-                foreach (JObject n in coop)
-                    AddServer(items, seen, (string)n.SelectToken("setting.coopStage.name"),
-                                           (string)n.SelectToken("setting.coopStage.image.url"));
+            if (!s3 && !s2)
+                Info.Text = "No data yet. Open the main page once (Splatoon 3 and/or Splatoon 2) so the stage art can be listed, then come back.";
+            else if (!s2)
+                Info.Text += "\nSplatoon 2 art shows up after you open the main page in Splatoon 2 mode once.";
 
             ServerList.ItemsSource = items;
+        }
+
+        private static bool TryAddSplatoon3(List<WallpaperItem> items, HashSet<string> seen)
+        {
+            string json = CacheHelper.Load("schedules3.json");
+            if (json == null) return false;
+
+            try
+            {
+                var root = JObject.Parse(json);
+
+                var stages = root.SelectToken("data.vsStages.nodes") as JArray;
+                if (stages != null)
+                    foreach (JObject s in stages)
+                        AddServer(items, seen, (string)s["name"], (string)s.SelectToken("originalImage.url"));
+
+                var coop = root.SelectToken("data.coopGroupingSchedule.regularSchedules.nodes") as JArray;
+                if (coop != null)
+                    foreach (JObject n in coop)
+                        AddServer(items, seen, (string)n.SelectToken("setting.coopStage.name"),
+                                               (string)n.SelectToken("setting.coopStage.image.url"));
+                return true;
+            }
+            catch (Exception) { return false; }
         }
 
         private static void AddServer(List<WallpaperItem> items, HashSet<string> seen, string name, string url)
@@ -99,10 +115,63 @@ namespace Wplatoon
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(url) || !seen.Add(url)) return;
             items.Add(new WallpaperItem
             {
-                Name = name,
+                Name = name + " (Splatoon 3)",
                 HighUrl = url,
+                // the small version of the same picture, so the list loads fast
                 ThumbUrl = url.Replace("high_resolution", "low_resolution").Replace("_0.png", "_1.png")
             });
+        }
+        
+        private static bool TryAddSplatoon2(List<WallpaperItem> items, HashSet<string> seen)
+        {
+            bool any = false;
+
+            string schedules = CacheHelper.Load("schedules2.json");
+            if (schedules != null)
+            {
+                try
+                {
+                    var root = JObject.Parse(schedules);
+                    foreach (string key in new[] { "regular", "gachi", "league" })
+                    {
+                        var nodes = root[key] as JArray;
+                        if (nodes == null) continue;
+                        foreach (JObject node in nodes)
+                            foreach (string st in new[] { "stage_a", "stage_b" })
+                                any |= AddSplatoon2(items, seen, node[st]);
+                    }
+                }
+                catch (Exception) { }
+            }
+
+            string coop = CacheHelper.Load(AppSettings.Coop2Cache);
+            if (coop != null)
+            {
+                try
+                {
+                    var details = JObject.Parse(coop)["details"] as JArray;
+                    if (details != null)
+                        foreach (JObject d in details)
+                            any |= AddSplatoon2(items, seen, d["stage"]);
+                }
+                catch (Exception) { }
+            }
+
+            return any;
+        }
+
+        private static bool AddSplatoon2(List<WallpaperItem> items, HashSet<string> seen, JToken stage)
+        {
+            if (stage == null || stage.Type == JTokenType.Null) return false;
+
+            string name = (string)stage["name"];
+            string path = (string)stage["image"];
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(path)) return false;
+
+            string url = path.StartsWith("http") ? path : S2ImageBase + path;
+            if (seen.Add(url))
+                items.Add(new WallpaperItem { Name = name + " (Splatoon 2)", HighUrl = url, ThumbUrl = url });
+            return true;
         }
 
         private async void Wall_SelectionChanged(object sender, SelectionChangedEventArgs e)

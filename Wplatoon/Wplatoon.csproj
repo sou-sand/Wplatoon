@@ -168,13 +168,21 @@
     </Content>
     <Content Include="Assets\astro.png" />
     <Content Include="Assets\defined\wallpapers\CallieAndMarie.jpg" />
+    <Content Include="Assets\defined\wallpapers\calliemarieandagent3Calamari.jpg" />
     <Content Include="Assets\defined\wallpapers\DeepCutAndSquidSisters.jpg" />
     <Content Include="Assets\defined\wallpapers\DeepCutWinter.jpg" />
+    <Content Include="Assets\defined\wallpapers\grandfestivalsquidsisters.jpg" />
     <Content Include="Assets\defined\wallpapers\list.txt" />
+    <Content Include="Assets\defined\wallpapers\pearl.png" />
+    <Content Include="Assets\defined\wallpapers\returnofthemamamilians.jpg" />
+    <Content Include="Assets\defined\wallpapers\shiver.png" />
+    <Content Include="Assets\defined\wallpapers\splatoon2finalfest.jpg" />
     <Content Include="Assets\defined\wallpapers\Splatoon3GrandFestivalSplatfest.jpg" />
     <Content Include="Assets\defined\wallpapers\Splatoon3LiveConcert.png" />
+    <Content Include="Assets\defined\wallpapers\squidsisters.jpg" />
     <Content Include="Assets\misenhower.png" />
     <Content Include="Assets\msn_money.png" />
+    <Content Include="Assets\sousand.jpg" />
     <Content Include="Assets\test.jpg" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -50,25 +50,27 @@
 
         <!--ContentPanel - place additional content here-->
         <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <StackPanel Height="819">
+            <StackPanel Height="1145">
 
                 <TextBlock Text="Coding" Margin="12,0,12,8"
                    FontFamily="Segoe WP Light" FontWeight="Bold" FontSize="24"/>
-                <Grid Margin="12,0,12,28">
+                <Grid Margin="12,0,12,28" Height="200">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="/Assets/test.jpg" Width="100" Height="100"
+                    <Image Source="/Assets/sousand.jpg" Width="100" Height="100"
                    Margin="0,0,12,0" VerticalAlignment="Top"/>
-                    <StackPanel Grid.Column="1" Height="126" VerticalAlignment="Top">
+                    <StackPanel Grid.Column="1" Height="201" VerticalAlignment="Top">
                         <TextBlock Text="SouSand" FontFamily="Segoe WP Light" FontSize="24"
                            TextWrapping="Wrap"/>
                         <TextBlock Text="Literally the only coder for now"
                            FontFamily="Segoe WP SemiLight" FontSize="16"
                            TextWrapping="Wrap"/>
-                        <Button Content="Portifolio" Tag="https://sou-sand.github.io/personal-portifolio/"
+                        <Button Content="Portifolio" Tag="https://sou-sand.github.io/"
                         HorizontalAlignment="Left" Click="LinkButton_Click"/>
+                        <Button Content="Server" Tag="https://discord.gg/RAmnruf8Ge"
+                            HorizontalAlignment="Left" Click="LinkButton_Click"/>
                     </StackPanel>
                 </Grid>
                 <TextBlock Text="Data/API" Margin="12,0,12,8"
@@ -131,10 +133,13 @@
                            TextWrapping="Wrap"/>
                         <TextBlock Text="Initial idea and uh idk"
                            FontFamily="Segoe WP SemiLight" FontSize="16" TextWrapping="Wrap"/>
-                        <Button Content="Link" Tag="https://discord.gg/kE8FyHTq5f"
+                        <Button Content="Server" Tag="https://discord.gg/kE8FyHTq5f"
+                        HorizontalAlignment="Left" Click="LinkButton_Click" Visibility="Visible"/>
+                        <Button Content="Link" Tag="https://msnmoney.dankassassin368.com/"
                         HorizontalAlignment="Left" Click="LinkButton_Click" Visibility="Visible"/>
                     </StackPanel>
                 </Grid>
+                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Wplatoon is not affliated to Nintendo. This is a FAN project. We don't earn anything doing this."/>
 
             </StackPanel>
         </ScrollViewer>

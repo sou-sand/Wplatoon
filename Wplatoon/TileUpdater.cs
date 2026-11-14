@@ -11,8 +11,7 @@ namespace Wplatoon
     {
         private const string Dir = "Shared/ShellContent";
         public static string LastError = "";
-
-        // Downloads the stage image (once), then updates the tile. Always calls done().
+        
         public static void Update(string rule, string s1, string s2, string line, string imageUrl, Action done)
         {
             try
@@ -32,7 +31,7 @@ namespace Wplatoon
                 }
 
                 var client = new WebClient();
-                client.Headers["User-Agent"] = "Wplatoon/1.0 (Windows Phone 8 fan app; contact: YOUR-EMAIL-OR-SITE)";
+                client.Headers["User-Agent"] = "Wplatoon/1.2.1.0 (Windows Phone 8 fan app; contact: sousand@proton.me)";
                 client.OpenReadCompleted += (s, e) =>
                 {
                     try
