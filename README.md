@@ -68,6 +68,7 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 
 # Want to get the latest sneak-peeks and help the project?
 ![banner](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/banner.png)
+
 **Join our server!**
 
 > https://discord.gg/ST2XwgM3jA
