@@ -49,8 +49,10 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 - ranked (splatoon 2)
 - league (splatoon 2)
 - event details (click on the tile at the menu)
-- notify me button (beta, for some events)
+- notify me button
 - functional settings (At some point. you can change between 24h/12h scheme, and regional events)
+- Splatoon wallpapers you can set (some are from the app, others are from splatoon3.ink, aka server)
+- live tiles
 
 # Special thanks:
 ![credits](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/credits.png)
