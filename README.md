@@ -31,8 +31,6 @@ If you're interested, go take a look at https://github.com/misenhower/splatoon3.
 # Planned features:
 ![settings](https://github.com/sou-sand/Wplatoon/blob/master/screenshots/settings.png)
 
-- More explanation about the project at readme.md
-- also make this readme have other languages...?
 - fix github actions (broken)
 
 # What does it have (as of now):
