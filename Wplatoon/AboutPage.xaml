@@ -50,7 +50,7 @@
 
         <!--ContentPanel - place additional content here-->
         <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <StackPanel Height="1145">
+            <StackPanel Height="1010">
 
                 <TextBlock Text="Coding" Margin="12,0,12,8"
                    FontFamily="Segoe WP Light" FontWeight="Bold" FontSize="24"/>
@@ -121,24 +121,6 @@
                     </StackPanel>
                 </Grid>
 
-                <Grid Margin="12,0,12,28">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="/Assets/msn_money.png" Width="100" Height="100"
-                   Margin="0,0,12,0" VerticalAlignment="Top"/>
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Text="MSN Money" FontFamily="Segoe WP Light" FontSize="24"
-                           TextWrapping="Wrap"/>
-                        <TextBlock Text="Initial idea and uh idk"
-                           FontFamily="Segoe WP SemiLight" FontSize="16" TextWrapping="Wrap"/>
-                        <Button Content="Server" Tag="https://discord.gg/kE8FyHTq5f"
-                        HorizontalAlignment="Left" Click="LinkButton_Click" Visibility="Visible"/>
-                        <Button Content="Link" Tag="https://msnmoney.dankassassin368.com/"
-                        HorizontalAlignment="Left" Click="LinkButton_Click" Visibility="Visible"/>
-                    </StackPanel>
-                </Grid>
                 <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Wplatoon is not affliated to Nintendo. This is a FAN project. We don't earn anything doing this."/>
 
             </StackPanel>
